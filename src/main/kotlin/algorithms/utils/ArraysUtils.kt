@@ -8,4 +8,6 @@ class ArraysUtils {
             array[(index + startIndex) % array.size]
         }.toIntArray()
     }
+
+    fun findKthLargest(array: IntArray, k: Int): Int = array.sortedDescending()[k - 1]
 }
