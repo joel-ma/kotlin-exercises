@@ -10,4 +10,36 @@ class ArraysUtils {
     }
 
     fun findKthLargest(array: IntArray, k: Int): Int = array.sortedDescending()[k - 1]
+
+    fun cloneMatrix(matrix: Array<IntArray>): Array<IntArray> = Array(matrix.size) { row -> IntArray(matrix[row].size) { col -> matrix[row][col] }  }
+
+    /**
+     * input  [[1,1,1,1],
+     *         [1,1,1,0],
+     *         [1,1,1,1]]
+     *
+     * output [[1,1,1,0],
+     *         [0,0,0,0],
+     *         [1,1,1,0]]
+     */
+    fun setRowAndColToZeroInMatrix(matrix: Array<IntArray>): Array<IntArray> {
+        val result = cloneMatrix(matrix)
+
+        for (row in matrix.indices) {
+            for(col in 0 until matrix[row].size) {
+                if (matrix[row][col] == 0) {
+                    fillRowAndColumnWithZero(result, row, col)
+                }
+            }
+        }
+
+        return result
+    }
+
+    private fun fillRowAndColumnWithZero(matrix: Array<IntArray>, rowIndex: Int, colIndex: Int) {
+        for(i in 0 until matrix[rowIndex].size)
+            matrix[rowIndex][i] = 0
+        for(row in matrix)
+            row[colIndex] = 0
+    }
 }

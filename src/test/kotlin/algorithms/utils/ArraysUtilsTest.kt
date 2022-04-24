@@ -2,8 +2,11 @@ package algorithms.utils
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import kotlin.test.assertNotEquals
+import kotlin.test.assertNotSame
 
 internal class ArraysUtilsTest {
     private val arraysUtils = ArraysUtils()
@@ -69,5 +72,69 @@ internal class ArraysUtilsTest {
         val result = arraysUtils.findKthLargest(input, 10)
 
         assertEquals(expected, result)
+    }
+
+
+
+    @Test
+    fun cloneMatrix() {
+        val input = arrayOf(
+            intArrayOf(1,1,1,1),
+            intArrayOf(1,1,1,0),
+            intArrayOf(1,1,1,1),
+        )
+        val expected = arrayOf(
+            intArrayOf(1,1,1,1),
+            intArrayOf(1,1,1,0),
+            intArrayOf(1,1,1,1),
+        )
+
+        val result = arraysUtils.cloneMatrix(input)
+
+        assertArrayEquals(expected, result)
+        assertNotSame(expected, input)
+        result.forEachIndexed { rowIndex, row ->
+            assertNotSame(row, input[rowIndex])
+
+            row.forEachIndexed { colIndex, elem ->
+                assertEquals(elem, input[rowIndex][colIndex])
+            }
+        }
+    }
+
+    @Test
+    fun setRowAndColToZeroInMatrixScenario1() {
+        val input = arrayOf(
+            intArrayOf(1,1,1,1),
+            intArrayOf(1,1,1,0),
+            intArrayOf(1,1,1,1),
+        )
+        val expected = arrayOf(
+            intArrayOf(1,1,1,0),
+            intArrayOf(0,0,0,0),
+            intArrayOf(1,1,1,0),
+        )
+
+        val result = arraysUtils.setRowAndColToZeroInMatrix(input)
+
+        assertArrayEquals(expected, result)
+    }
+
+    @Test
+    fun setRowAndColToZeroInMatrixScenario2() {
+        val input = arrayOf(
+            intArrayOf(1,1,1,1),
+            intArrayOf(1,1,1,1),
+            intArrayOf(0,1,1,1),
+        )
+        val expected = arrayOf(
+            intArrayOf(0,1,1,1),
+            intArrayOf(0,1,1,1),
+            intArrayOf(0,0,0,0),
+        )
+
+        val result = arraysUtils.setRowAndColToZeroInMatrix(input)
+
+        assertArrayEquals(expected, result)
     }
 }
