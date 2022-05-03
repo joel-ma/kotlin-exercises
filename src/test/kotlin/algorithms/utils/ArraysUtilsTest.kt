@@ -2,10 +2,8 @@ package algorithms.utils
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import kotlin.test.assertNotEquals
 import kotlin.test.assertNotSame
 
 internal class ArraysUtilsTest {
@@ -73,8 +71,6 @@ internal class ArraysUtilsTest {
 
         assertEquals(expected, result)
     }
-
-
 
     @Test
     fun cloneMatrix() {

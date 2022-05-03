@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 internal class StringUtilsTest {
 
-    val stringUtils = StringUtils()
+    private val stringUtils = StringUtils()
 
     @Test
     fun reverseWordsInSentence() {
